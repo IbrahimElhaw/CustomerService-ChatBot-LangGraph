@@ -1,3 +1,1 @@
-print("Hello World")
-print("Hello World")
-print("Hello World")
+#qwen2.5:3b
