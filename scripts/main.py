@@ -1,4 +1,4 @@
-from src.support_bot.graph import build_graph
+from support_bot.graph import build_graph
 
 graph = build_graph()
 config = {"configurable": {"thread_id": "cli-1"}}

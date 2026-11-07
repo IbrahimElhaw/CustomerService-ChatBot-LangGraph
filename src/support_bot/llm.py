@@ -1,5 +1,5 @@
 from langchain_core.language_models.chat_models import BaseChatModel
-from src.support_bot.config import settings
+from .config import settings
 from langchain_ollama import ChatOllama
 
 
