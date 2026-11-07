@@ -10,6 +10,10 @@ class FakeToolModel(GenericFakeChatModel):
     def bind_tools(self, tools, **kwargs):
         return self
 
+    def with_structured_output(self, schema, **kwargs):
+        from langchain_core.runnables import RunnableLambda
+
+        return RunnableLambda(lambda _: schema(category="order"))
 
 
 def test_order_status_tool_found():
