@@ -3,7 +3,7 @@ from langgraph.graph.message import add_messages
 from typing import Annotated, Literal, TypedDict
 
 
-Route = Literal["order", "faq", "returns", "human"]
+Route = Literal["order", "faq", "returns", "human", "blocked", "ok"]
 
 class SupportState(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]
