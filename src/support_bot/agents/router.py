@@ -6,7 +6,6 @@ from pydantic import BaseModel, Field
 
 from support_bot.state import Route
 
-ORDER_ID_RE = re.compile(r"\bSN-\d{4}\b", re.IGNORECASE)
 HUMAN_RE = re.compile(r"\b(mensch|mitarbeiter|berater|beschwerde|anwalt)\b", re.IGNORECASE)
 
 ROUTER_PROMPT = """Klassifiziere die Kundenanfrage in genau eine Kategorie:
@@ -24,11 +23,13 @@ class RouteDecision(BaseModel):
 def rule_based_route(text: str) -> Literal["order", "faq", "returns", "human"] | None:
     if HUMAN_RE.search(text):
         return "human"
-
     return None
 
 
 def classify(llm: BaseChatModel, text: str) -> Route:
+    if rule_based_route(text) == "human":
+        return "human"
+
     try:
         structured = llm.with_structured_output(RouteDecision)
         decision = structured.invoke([SystemMessage(ROUTER_PROMPT), HumanMessage(text)])

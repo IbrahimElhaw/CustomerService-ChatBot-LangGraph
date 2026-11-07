@@ -21,3 +21,6 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["tests"]
+addopts = "-m 'not integration'"
+markers = ["integration: Tests mit echtem LLM/Embeddings (Ollama erforderlich)"]

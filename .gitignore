@@ -5,3 +5,5 @@ __pycache__
 .pytest_cache
 .venv/
 notes.txt
+roadmap.bmp
+chroma_db
