@@ -11,6 +11,8 @@ dependencies = [
     "langchain-core",
     "langchain-ollama",
     "pydantic-settings",
+    "psycopg[binary,pool]",
+    "langgraph-checkpoint-postgres"
 ]
 
 [project.optional-dependencies]
