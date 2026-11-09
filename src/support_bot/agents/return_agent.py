@@ -26,7 +26,8 @@ def returns_node(state: SupportState) -> dict:
         return {"messages": [AIMessage(f"Ich finde keine Bestellung mit der Nummer {order_id}.")]}
 
     decision = interrupt({
-        "frage": f"Retoure für {order_id} über {row['total_eur']:.2f} € genehmigen?"
+        "frage": f"Retoure für {order_id} über {row['total_eur']:.2f} € genehmigen?",
+        "order_id": order_id,
     })
 
     if decision == "approve":

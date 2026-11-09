@@ -14,7 +14,6 @@ def get_checkpointer() -> MemorySaver | PostgresSaver:
     """
 
     if settings.checkpointer_backend == "postgres":
-
         with PostgresSaver.from_conn_string(settings.postgres_url) as saver:
             saver.setup()  # legt die Tabellen an (idempotent)
             yield saver

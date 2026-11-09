@@ -11,13 +11,13 @@ config = {"configurable": {"thread_id": thread_id}}
 
 with get_checkpointer() as checkpointer:
     graph = build_graph(checkpointer=checkpointer)
-    print(f"Thread: {thread_id}  (fortsetzen: python scripts/chat_cli.py {thread_id})")
+    print(f"Thread: {thread_id}  (fortsetzen: python scripts/main.py {thread_id})")
 
-    state = graph.get_state(config)
-    if state.values.get("messages"):
-        print("Bot (letzte Nachricht):", state.values["messages"][-1].content)
+    state_snapshot = graph.get_state(config)
+    if state_snapshot.values.get("messages"):
+        print("Bot (letzte Nachricht):", state_snapshot.values["messages"][-1].content)
 
-    result = {"__interrupt__": state.tasks[0].interrupts} if state.next else {}
+    result = {"__interrupt__": state_snapshot.tasks[0].interrupts} if state_snapshot.next else {}
     while True:
         while "__interrupt__" in result:
             frage = result["__interrupt__"][0].value["frage"]
