@@ -1,8 +1,7 @@
 import sqlite3
-from pathlib import Path
+from .config import settings
 
-DB_PATH = Path(__file__).resolve().parents[2] / "data" / "orders.db"
-
+DB_PATH = settings.data_dir / "orders.db"
 
 def get_conn() -> sqlite3.Connection:
     DB_PATH.parent.mkdir(exist_ok=True)

@@ -1,0 +1,10 @@
+.venv
+.env
+.git
+.idea
+__pycache__
+.pytest_cache
+.ruff_cache
+data
+chroma_db
+tests

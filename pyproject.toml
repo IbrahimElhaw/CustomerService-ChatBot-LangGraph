@@ -10,11 +10,14 @@ dependencies = [
     "langgraph",
     "langchain-core",
     "langchain-ollama",
+    "langchain-chroma",
+    "langchain-text-splitters",
     "pydantic-settings",
+    "fastapi",
+    "uvicorn",
+    "langgraph-checkpoint-postgres",
     "psycopg[binary,pool]",
-    "langgraph-checkpoint-postgres"
 ]
-
 [project.optional-dependencies]
 dev = ["pytest", "ruff"]
 

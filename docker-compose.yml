@@ -10,6 +10,34 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U support -d support_bot"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    container_name: support-bot-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SHOPNOW_CHECKPOINTER_BACKEND: postgres
+      SHOPNOW_POSTGRES_URL: postgresql://support:support@postgres:5432/support_bot
+      SHOPNOW_OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SHOPNOW_KNOWLEDGE_DIR: /app/company_documents
+      SHOPNOW_CHROMA_DIR: /app/chroma_db
+      SHOPNOW_DATA_DIR: /app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8000:8000"
+    volumes:
+      - appdata:/app/data
+      - chroma:/app/chroma_db
 
 volumes:
   pgdata:
+  appdata:
+  chroma:

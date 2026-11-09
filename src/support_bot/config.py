@@ -18,5 +18,6 @@ class Settings(BaseSettings):
 
     checkpointer_backend: str = "memory"
     postgres_url: str = "postgresql://support:support@localhost:5432/support_bot"
+    data_dir: Path = PROJECT_ROOT / "data"
 
 settings = Settings()
