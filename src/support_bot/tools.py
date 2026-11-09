@@ -10,12 +10,11 @@ def get_order_status(order_id: str) -> str:
     with get_conn() as conn:
         row = conn.execute(
             "SELECT status, carrier, estimated_arrival FROM orders WHERE order_id = ?",
-            (order_id.strip().upper(),),).fetchone()
+            (order_id.strip().upper(),),
+        ).fetchone()
     if row is None:
         return f"Keine Bestellung mit der Nummer {order_id} gefunden."
-    return (f"Status: {row['status']},"
-            f" Versand: {row['carrier'] or 'noch nicht versendet'},"
-            f" Lieferung: {row['estimated_arrival']}")
+    return f"Status: {row['status']}, Versand: {row['carrier'] or 'noch nicht versendet'}, Lieferung: {row['estimated_arrival']}"
 
 
 @tool

@@ -10,9 +10,7 @@ DOC = Document(page_content="Versand kostet 4,90 Euro.", metadata={"source": "ve
 
 
 def test_load_chunks_splits_by_header_and_keeps_source(tmp_path):
-    (tmp_path / "test.md").write_text(
-        "# Titel\n## Eins\nText eins.\n## Zwei\nText zwei.\n", encoding="utf-8"
-    )
+    (tmp_path / "test.md").write_text("# Titel\n## Eins\nText eins.\n## Zwei\nText zwei.\n", encoding="utf-8")
     chunks = load_chunks(tmp_path)
     assert len(chunks) >= 2
     assert all(c.metadata["source"] == "test.md" for c in chunks)

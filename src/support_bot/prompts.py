@@ -23,5 +23,4 @@ Antworte kurz und auf Deutsch (oder in der Sprache des Kunden).
 Kontext:
 {context}"""
 
-NO_INFO_MESSAGE = ("Dazu habe ich leider keine Information."
-                   " Soll ich Sie mit einem Mitarbeiter verbinden?")
+NO_INFO_MESSAGE = "Dazu habe ich leider keine Information. Soll ich Sie mit einem Mitarbeiter verbinden?"

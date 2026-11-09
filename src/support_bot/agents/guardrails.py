@@ -2,10 +2,7 @@ import re
 
 from ..prompts import SYSTEM_PROMPT
 
-REFUSAL = (
-    "Dabei kann ich leider nicht helfen. Kann ich Ihnen sonst bei einer "
-    "Bestellung, Retoure oder allgemeinen Frage weiterhelfen?"
-)
+REFUSAL = "Dabei kann ich leider nicht helfen. Kann ich Ihnen sonst bei einer Bestellung, Retoure oder allgemeinen Frage weiterhelfen?"
 PRIVACY_REFUSAL = "Aus Datenschutzgründen kann ich diese Information nicht ausgeben."
 MAX_INPUT_CHARS = 1000
 
@@ -34,11 +31,8 @@ INJECTION_PATTERNS = [
 INJECTION_RE = re.compile("|".join(INJECTION_PATTERNS), re.IGNORECASE)
 
 
-_PROMPT_SNIPPETS = [
-    line.strip().lower()
-    for line in SYSTEM_PROMPT.splitlines()
-    if len(line.strip()) > 25
-]
+_PROMPT_SNIPPETS = [line.strip().lower() for line in SYSTEM_PROMPT.splitlines() if len(line.strip()) > 25]
+
 
 def check_input(text: str) -> bool:
     """True = Nachricht darf weiter, False = hoeflich ablehnen."""

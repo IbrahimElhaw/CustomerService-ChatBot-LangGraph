@@ -12,6 +12,7 @@ from .graph import build_graph
 
 THREAD_PATTERN = r"^[A-Za-z0-9_-]{1,64}$"
 
+
 class ChatRequest(BaseModel):
     thread_id: str = Field(pattern=THREAD_PATTERN)
     message: str = Field(min_length=1, max_length=1000)

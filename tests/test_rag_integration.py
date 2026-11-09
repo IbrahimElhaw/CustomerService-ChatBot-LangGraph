@@ -19,13 +19,11 @@ def test_retrieval_finds_right_document(tmp_path, ollama_ok):
     kb = tmp_path / "kb"
     kb.mkdir()
     (kb / "versand.md").write_text(
-        "# Versand\n## Kosten\nDer Standardversand kostet 4,90 Euro. "
-        "Ab 50 Euro Bestellwert ist der Versand kostenlos.\n",
+        "# Versand\n## Kosten\nDer Standardversand kostet 4,90 Euro. Ab 50 Euro Bestellwert ist der Versand kostenlos.\n",
         encoding="utf-8",
     )
     (kb / "retoure.md").write_text(
-        "# Rückgabe\n## Frist\nSie können Artikel innerhalb von 30 Tagen "
-        "nach Erhalt zurücksenden.\n",
+        "# Rückgabe\n## Frist\nSie können Artikel innerhalb von 30 Tagen nach Erhalt zurücksenden.\n",
         encoding="utf-8",
     )
     chroma = tmp_path / "chroma"

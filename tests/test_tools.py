@@ -1,9 +1,9 @@
+from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
 from langchain_core.messages import AIMessage
 
 from support_bot.db import init_db
 from support_bot.graph import build_graph
 from support_bot.tools import get_order_status
-from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
 
 
 class FakeToolModel(GenericFakeChatModel):

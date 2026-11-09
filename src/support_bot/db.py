@@ -1,7 +1,9 @@
 import sqlite3
+
 from .config import settings
 
 DB_PATH = settings.data_dir / "orders.db"
+
 
 def get_conn() -> sqlite3.Connection:
     DB_PATH.parent.mkdir(exist_ok=True)

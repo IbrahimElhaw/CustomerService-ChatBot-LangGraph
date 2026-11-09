@@ -11,9 +11,7 @@ from .llm import get_embeddings
 
 
 def load_chunks(knowledge_dir: Path) -> list[Document]:
-    header_splitter = MarkdownHeaderTextSplitter(
-        headers_to_split_on=[("#", "h1"), ("##", "h2")], strip_headers=False
-    )
+    header_splitter = MarkdownHeaderTextSplitter(headers_to_split_on=[("#", "h1"), ("##", "h2")], strip_headers=False)
     size_splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
 
     chunks: list[Document] = []
@@ -24,9 +22,8 @@ def load_chunks(knowledge_dir: Path) -> list[Document]:
             chunks.extend(size_splitter.split_documents([section]))
     return chunks
 
-def get_vectorstore(
-    embeddings: Embeddings | None = None, persist_dir: Path | None = None
-) -> Chroma:
+
+def get_vectorstore(embeddings: Embeddings | None = None, persist_dir: Path | None = None) -> Chroma:
     return Chroma(
         collection_name="faq",
         embedding_function=embeddings or get_embeddings(),

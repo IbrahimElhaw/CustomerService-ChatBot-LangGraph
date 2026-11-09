@@ -10,6 +10,7 @@ from ..state import SupportState
 
 Retriever = Callable[[str], list[Document]]
 
+
 def build_faq_node(llm: BaseChatModel, retriever: Retriever | None = None):
     retriever = retriever or default_retriever
 
@@ -19,14 +20,9 @@ def build_faq_node(llm: BaseChatModel, retriever: Retriever | None = None):
         if not docs:
             return {"messages": [AIMessage(NO_INFO_MESSAGE)]}
 
-        context = "\n\n".join(
-            f"[{d.metadata.get('source', '?')}]\n{d.page_content}" for d in docs
-        )
-        response = llm.invoke(
-            [SystemMessage(FAQ_PROMPT.format(context=context)), *state["messages"]]
-        )
+        context = "\n\n".join(f"[{d.metadata.get('source', '?')}]\n{d.page_content}" for d in docs)
+        response = llm.invoke([SystemMessage(FAQ_PROMPT.format(context=context)), *state["messages"]])
         sources = sorted({d.metadata.get("source", "?") for d in docs})
         return {"messages": [AIMessage(f"{response.content}\n\nQuellen: {', '.join(sources)}")]}
 
     return faq_node
-

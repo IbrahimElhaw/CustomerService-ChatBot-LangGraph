@@ -1,10 +1,10 @@
 import sys
 from uuid import uuid4
 
-from support_bot.checkpointer import get_checkpointer
-
-from support_bot.graph import build_graph
 from langgraph.types import Command
+
+from support_bot.checkpointer import get_checkpointer
+from support_bot.graph import build_graph
 
 thread_id = sys.argv[1] if len(sys.argv) > 1 else uuid4().hex[:8]
 config = {"configurable": {"thread_id": thread_id}}

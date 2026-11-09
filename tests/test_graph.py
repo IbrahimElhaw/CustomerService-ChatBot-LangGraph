@@ -27,6 +27,7 @@ def test_thread_keeps_history():
     assert len(out["messages"]) == 4  # 2x user + 2x bot
     assert "Gern!" in out["messages"][-1].content
 
+
 def test_attack_is_blocked_before_llm():
     # نموذج بلا رسائل: لو لمسه أي Node لانهار الاختبار
     graph = build_graph(llm=FakeToolModel(messages=iter([])))

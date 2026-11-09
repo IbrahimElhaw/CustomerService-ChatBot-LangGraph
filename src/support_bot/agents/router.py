@@ -1,5 +1,6 @@
 import re
 from typing import Literal
+
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
 from pydantic import BaseModel, Field
@@ -14,10 +15,9 @@ ROUTER_PROMPT = """Klassifiziere die Kundenanfrage in genau eine Kategorie:
 - returns: Rückgabe, Retoure, Erstattung, defekte Ware
 - human: Kunde will mit einem Menschen sprechen oder ist sehr verärgert"""
 
+
 class RouteDecision(BaseModel):
-    category: Literal["order", "faq", "returns", "human"] = Field(
-        description="Die passende Kategorie der Anfrage"
-    )
+    category: Literal["order", "faq", "returns", "human"] = Field(description="Die passende Kategorie der Anfrage")
 
 
 def rule_based_route(text: str) -> Literal["order", "faq", "returns", "human"] | None:

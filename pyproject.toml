@@ -29,3 +29,10 @@ testpaths = ["tests"]
 pythonpath = ["tests"]
 addopts = "-m 'not integration'"
 markers = ["integration: Tests mit echtem LLM/Embeddings (Ollama erforderlich)"]
+
+[tool.ruff]
+line-length = 150
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

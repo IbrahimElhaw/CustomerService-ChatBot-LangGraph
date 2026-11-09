@@ -1,7 +1,9 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
 
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_prefix="SHOPNOW_")
@@ -19,5 +21,6 @@ class Settings(BaseSettings):
     checkpointer_backend: str = "memory"
     postgres_url: str = "postgresql://support:support@localhost:5432/support_bot"
     data_dir: Path = PROJECT_ROOT / "data"
+
 
 settings = Settings()
